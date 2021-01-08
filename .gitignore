@@ -1,0 +1,6 @@
+# OS specifics
+.DS_Store
+thumbs.db
+
+# Composer files
+vendor/
