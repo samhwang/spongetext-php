@@ -11,19 +11,18 @@ class CLI extends Command
 {
     protected static $defaultName = 'sponge';
 
-    public function __construct(string $sentence = '')
+    public function __construct()
     {
-        $this->sentence = $sentence;
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $descriptionText = 'Create sponge-text from a sentence and output to console';
         $this
             ->setDescription($descriptionText)
             ->setHelp($descriptionText)
-            ->addArgument('sentence', $this->sentence ? InputArgument::REQUIRED : InputArgument::OPTIONAL, 'sentence to spongify');
+            ->addArgument('sentence', InputArgument::OPTIONAL, 'sentence to spongify');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
