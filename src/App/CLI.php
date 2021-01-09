@@ -28,9 +28,9 @@ class CLI extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $sentence = implode(" ", $input->getArgument('sentence'));
-
-        // the first argument
-        $output->writeln('sentence: ' . $sentence);
+        $sponge = new Spongify();
+        $spongetext = $sponge->spongify($sentence);
+        $output->writeln($spongetext);
 
         return Command::SUCCESS;
     }
