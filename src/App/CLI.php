@@ -22,13 +22,15 @@ class CLI extends Command
         $this
             ->setDescription($descriptionText)
             ->setHelp($descriptionText)
-            ->addArgument('sentence', InputArgument::OPTIONAL, 'sentence to spongify');
+            ->addArgument('sentence', InputArgument::IS_ARRAY, 'sentence to spongify');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $sentence = implode(" ", $input->getArgument('sentence'));
+
         // the first argument
-        $output->writeln('sentence: '. $input->getArgument('sentence'));
+        $output->writeln('sentence: ' . $sentence);
 
         return Command::SUCCESS;
     }
