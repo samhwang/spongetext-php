@@ -11,4 +11,5 @@ $spongeCLI = new CLI();
 
 $app = new Application();
 $app->add($spongeCLI);
+$app->setDefaultCommand($spongeCLI->getName(), true);
 $app->run();
