@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": ">=8.0",
+        "fakerphp/faker": "^1.13",
         "php-di/php-di": "^6.3",
         "symfony/console": "^5.2"
     },
