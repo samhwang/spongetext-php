@@ -30,6 +30,10 @@ class CLI extends Command
         $sentence = implode(" ", $input->getArgument('sentence'));
         $sponge = new Spongify();
         $spongetext = $sponge->spongify($sentence);
+        while (strcmp($sentence, $spongetext) === 0) {
+            $spongetext = $sponge->spongify($sentence);
+        }
+        
         $output->writeln($spongetext);
 
         return Command::SUCCESS;
