@@ -27,6 +27,9 @@ class CLI extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        // the first argument
+        $output->writeln('sentence: '. $input->getArgument('sentence'));
+
         return Command::SUCCESS;
     }
 }
