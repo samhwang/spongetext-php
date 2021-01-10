@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 class CLI extends Command
 {
@@ -28,6 +29,10 @@ class CLI extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $sentence = implode(" ", $input->getArgument('sentence'));
+        while (!$sentence) {
+            $sentence = $this->getUserInput($input, $output);
+        }
+
         $sponge = new Spongify();
         $spongetext = $sponge->spongify($sentence);
         while (strcmp($sentence, $spongetext) === 0) {
@@ -37,5 +42,13 @@ class CLI extends Command
         $output->writeln($spongetext);
 
         return Command::SUCCESS;
+    }
+
+    protected function getUserInput(InputInterface $input, OutputInterface $output): string|null
+    {
+        $helper = $this->getHelper('question');
+        $question = new Question('Type in a sentence to spongify: ');
+        $sentence = $helper->ask($input, $output, $question);
+        return $sentence;
     }
 }
