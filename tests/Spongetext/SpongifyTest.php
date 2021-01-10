@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Spongetext;
 
 use PHPUnit\Framework\TestCase;
 use Faker\Factory as Faker;
