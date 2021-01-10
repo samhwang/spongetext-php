@@ -33,6 +33,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpdbg -qrr ./vendor/bin/phpunit tests"
+        "test": "phpdbg -qrr ./vendor/bin/phpunit tests",
+        "format": "phpcbf src/* tests/* bin/*",
+        "lint": "phpcbf src/* tests/* bin/*"
     }
 }
