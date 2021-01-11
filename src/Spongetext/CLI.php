@@ -2,6 +2,7 @@
 
 namespace Spongetext;
 
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,8 +30,14 @@ class CLI extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $sentence = implode(" ", $input->getArgument('sentence'));
-        while (!$sentence) {
+        $noInitialInput = !$sentence;
+        if ($noInitialInput) {
             $sentence = $this->getUserInput($input, $output);
+        }
+
+        $isStillBlank = !$sentence;
+        if ($isStillBlank) {
+            throw new Exception("Cannot process blank input!");
         }
 
         $sponge = new Spongify();
